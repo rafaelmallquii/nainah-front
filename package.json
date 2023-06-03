@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "autoprefixer": "latest",
+    "daisyui": "^3.0.2",
     "next": "latest",
     "postcss": "latest",
     "react": "18.2.0",
