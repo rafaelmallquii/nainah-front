@@ -9,10 +9,12 @@
   "dependencies": {
     "autoprefixer": "latest",
     "daisyui": "^3.0.2",
+    "framer-motion": "^10.12.16",
     "next": "latest",
     "postcss": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.9.0",
     "tailwindcss": "latest"
   }
 }

@@ -20,6 +20,8 @@ export default function ({ children }) {
         <Nav />
         <div>{children}</div>
        {/*  <Footer /> */}
+
+       <div id="modal-root" />
       </body>
     </html>
   );

@@ -10,14 +10,14 @@ const navMenuIcon = [
     icon: "/icons/hearth.svg",
   },
   {
-    name: "Account",
-    href: "#",
-    icon: "/icons/user.svg",
-  },
-  {
     name: "Search",
     href: "#",
     icon: "/icons/search.svg",
+  },
+  {
+    name: "Account",
+    href: "#",
+    icon: "/icons/user.svg",
   },
   {
     name: "Cart",
@@ -61,11 +61,11 @@ export default function Nav() {
   const path = usePathname();
 
   return (
-    <nav className="container">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between  py-4">
+    <nav className="container h-[40px] px-[12px] [box-shadow:1px_3px_4px_rgba(0,0,0,0.25)] ">
+      <div className="flex flex-wrap items-center justify-between  h-full">
         <div className="flex gap-4 items-center">
           <Link href="#" className="flex items-center">
-            <img src="/img/logo.svg" className="h-[4rem] mr-3" alt="Logo" />
+            <img src="/img/logo.svg" className="h-[33px] mr-3" alt="Logo" />
           </Link>
           <ul className="font-medium flex max-md:flex-col max-md:p-4 max-md:mt-4 rounded-lg max-lg:hidden  md:space-x-8">
             {navMenu.map((item, index) => (
@@ -83,36 +83,19 @@ export default function Nav() {
             ))}
           </ul>
         </div>
-        {/* <label
-          htmlFor="menu"
-          type="button"
-          className="inline-flex items-center p-2  text-sm  rounded-lg md:hidden"
-        >
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </label>
-        <input type="checkbox" id="menu" hidden className="peer/menu" /> */}
-        <ul className="font-medium flex gap-2 w-max items-center">
+       
+        <ul className="font-medium flex gap-[12px] w-max items-center">
           {navMenuIcon.map((item, index) => (
             <li key={index}>
-              <Link href={item.href} className="block px-2">
+              <Link href={item.href} className="block">
                 <img src={item.icon} height={24} width={24} alt={item.name} />
               </Link>
             </li>
           ))}
         </ul>
       </div>
+
+      
     </nav>
   );
 }
