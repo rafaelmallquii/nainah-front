@@ -1,5 +1,12 @@
 import Image from 'next/image'
 
+
+export const metadata = {
+  title: "Home",
+  description:
+    "This is a meta description. Welcome to slingacademy.com. Happy coding and have a nice day",
+};
+
 export default function () {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

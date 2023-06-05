@@ -37,7 +37,7 @@ const navMenu = [
   },
   {
     name: "Catalogs",
-    href: "#",
+    href: "/catalogs",
   },
   {
     name: "Coupons",
@@ -62,7 +62,7 @@ export default function Nav() {
 
   return (
     <nav className="container">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between  py-4">
         <div className="flex gap-4 items-center">
           <Link href="#" className="flex items-center">
             <img src="/img/logo.svg" className="h-[4rem] mr-3" alt="Logo" />

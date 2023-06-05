@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,6 +13,15 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
 
+      boxShadow: {
+        custom: "0px 4px 4px rgba(0,0,0,0.25)",
+      },
+
+      borderRadius: {
+        "custom-50": "13px",
+        "custom-100": "18px",
+      },
+
       colors: {
         primary: "#FFBCCC",
         secondary: "#01A7A3",
@@ -23,14 +31,18 @@ module.exports = {
           200: "#B3B3B3",
           300: "#243232",
         },
-      },
 
-      
+        cpink: {
+          50: "#FFDDE2",
+          100: "#FFBCCC",
+          200: "#ED9CA7",
+        },
+      },
     },
 
     container: {
       center: true,
-      padding: "1rem",
+
       screens: {
         sm: "100%",
         md: "100%",

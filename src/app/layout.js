@@ -18,8 +18,8 @@ export default function ({ children }) {
     <html lang="es">
       <body className={montserrat.className}>
         <Nav />
-        {children}
-        <Footer />
+        <div>{children}</div>
+       {/*  <Footer /> */}
       </body>
     </html>
   );
