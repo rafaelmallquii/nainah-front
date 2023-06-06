@@ -9,6 +9,7 @@ const authData = {
   clientKey: "5Sse7MujR83xe3d9cGL8x7sgNQLjaAa7qmmu6Z8ezLqdbDA7VM49buVn5DyyNFMz",
 };
 
+<<<<<<< HEAD
 const BasicCardInfo = {
   cardNumber: 4111111111111111,
   cardCode: 123,
@@ -25,47 +26,14 @@ const App = () => {
     // Dispatch CC data to Authorize.net and receive payment nonce for use on your server
     const response = await dispatchData({ cardData });
     console.log("Received response:", response);
-  };
+=======
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="cardNumber"
-        value={cardData.cardNumber}
-        onChange={(event) =>
-          setCardData({ ...cardData, cardNumber: event.target.value })
-        }
-      />
-      <input
-        type="text"
-        name="month"
-        value={cardData.month}
-        onChange={(event) =>
-          setCardData({ ...cardData, month: event.target.value })
-        }
-      />
-      <input
-        type="text"
-        name="year"
-        value={cardData.year}
-        onChange={(event) =>
-          setCardData({ ...cardData, year: event.target.value })
-        }
-      />
-      <input
-        type="text"
-        name="cardCode"
-        value={cardData.cardCode}
-        onChange={(event) =>
-          setCardData({ ...cardData, cardCode: event.target.value })
-        }
-      />
-      <button type="submit" disabled={loading || error}>
-        Pay
-      </button>
-    </form>
-  );
+const App = () => {
+  const handleSubmit = (response) => {
+    console.log('Received response:', response);
+>>>>>>> fd68a8846f5781e1448a6ffba4fddd5df1092ce0
+  };
+  return <HostedForm authData={authData} onSubmit={handleSubmit} />;
 };
 
 export default App;
