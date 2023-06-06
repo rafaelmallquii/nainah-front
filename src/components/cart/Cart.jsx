@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModalVertical from "../core/Modal";
 import { faker } from "@faker-js/faker";
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorage, useOnClickOutside } from "usehooks-ts";
 import { formatPrice } from "@/helpers/helpers";
 
 const InputIncrement = ({ setCart, cart, currentValue, id }) => {
@@ -59,7 +59,11 @@ const InputIncrement = ({ setCart, cart, currentValue, id }) => {
 export default function Cart({ isOpenModal, setIsOpenModal }) {
   const [cart, setCart] = useLocalStorage("cart", []);
 
+
+
   const [total, setTotal] = useState(0);
+
+  const ref = useRef();
 
   useEffect(() => {
     setCart((prev) => [
@@ -86,6 +90,8 @@ export default function Cart({ isOpenModal, setIsOpenModal }) {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+
+  useOnClickOutside(ref , () => setIsOpenModal(false));
   return (
     <>
       <ModalVertical
@@ -94,7 +100,7 @@ export default function Cart({ isOpenModal, setIsOpenModal }) {
         setIsOpenModal={setIsOpenModal}
         bgDark={false}
       >
-        <div className="w-screen px-[12px] relative h-full ">
+        <div ref={ref} className="w-screen px-[12px] relative h-full ">
           <div className="flex items-center justify-between p-[15px]">
             <span className="text-[24px] font-semibold text-cpink-200">
               Cart({cart.length})
@@ -160,7 +166,9 @@ export default function Cart({ isOpenModal, setIsOpenModal }) {
 
           <section className="absolute bottom-0 w-full left-0 px-[12px]  bg-white border-t">
             <div className="pb-10  flex flex-col items-center">
-              <span className="text-[24px] my-4">Total: US {formatPrice(total)}</span>
+              <span className="text-[24px] my-4">
+                Total: US {formatPrice(total)}
+              </span>
 
               <div className="gap-[14px] flex flex-col w-full ">
                 <button className="bg-cpink-100 text-white text-[20px] h-[45px]">
