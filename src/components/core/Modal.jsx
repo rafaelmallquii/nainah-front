@@ -31,7 +31,7 @@ export default function ModalVertical({
       <AnimatePresence>
         {isOpenModal && (
           <motion.div
-            className={`h-full w-full  fixed left-0 top-[40px] z-[200] grid place-content-center place-items-center ${
+            className={` w-screen fixed left-0 bottom-0 top-[40px] z-[200] grid place-content-center place-items-center ${
               selectable ? "pointer-events-none" : ""
             } ${blur ? "backdrop-blur-[6px]" : ""} ${
               bgDark ? "bg-black/40" : ""
@@ -40,7 +40,7 @@ export default function ModalVertical({
             <motion.div
               className={`absolute top-0 h-full [filter:drop-shadow(0px_4px_4px_rgba(0,0,0,0.25))]  ${
                 selectable ? "pointer-events-auto" : ""
-              } ${right ? "right-0" : "left-0"} pt-14 pb-2 bg-base-100`}
+              } ${right ? "right-0" : "left-0"} bg-white`}
               initial={right ? { x: "100%" } : { x: "-100%" }}
               animate={right ? { x: 0 } : { x: 0 }}
               transition={{ duration: 0.59, ease: "easeOut" }}
