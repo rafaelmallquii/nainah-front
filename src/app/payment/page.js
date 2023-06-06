@@ -4,26 +4,24 @@ import React from 'react';
 
 import { HostedForm, useAcceptJs } from 'react-acceptjs';
 
+
 const authData = {
   apiLoginID: '92gDrV9HsJ',
   clientKey: '5Sse7MujR83xe3d9cGL8x7sgNQLjaAa7qmmu6Z8ezLqdbDA7VM49buVn5DyyNFMz',
 };
 
-// type BasicCardInfo = {
-//   cardNumber: string;
-//   cardCode: string;
-//   month: string;
-//   year: string;
-// };
+
+
+const BasicCardInfo = {
+  cardNumber: 4111111111111111,
+  cardCode: 123,
+  month: 12,
+  year: 25,
+};
 
 const App = () => {
   const { dispatchData, loading, error } = useAcceptJs({ authData });
-  const [cardData, setCardData] = React.useState({
-    cardNumber: '',
-    month: '',
-    year: '',
-    cardCode: '',
-  });
+  const [cardData, setCardData] = React.useState(BasicCardInfo);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
