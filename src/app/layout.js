@@ -17,9 +17,9 @@ export default function ({ children }) {
   return (
     <html lang="es">
       <body className={montserrat.className}>
-        <Nav />
-        <div>{children}</div>
-       {/*  <Footer /> */}
+        {/* <Nav />
+        <div>{children}</div> */}
+        <Footer />
 
        <div id="modal-root" />
       </body>
