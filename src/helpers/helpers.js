@@ -9,3 +9,18 @@ const isPathActive = (path, currentPath) => {
 
   return false;
 };
+
+
+const formatPrice = (price) => {
+
+  if (!price)   return "$ 0.00";
+
+  return price.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+}
+
+
+
+export { isPathActive, formatPrice };

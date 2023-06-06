@@ -1,16 +1,13 @@
-'use client'
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import { HostedForm, useAcceptJs } from 'react-acceptjs';
-
+import { HostedForm, useAcceptJs } from "react-acceptjs";
 
 const authData = {
-  apiLoginID: '92gDrV9HsJ',
-  clientKey: '5Sse7MujR83xe3d9cGL8x7sgNQLjaAa7qmmu6Z8ezLqdbDA7VM49buVn5DyyNFMz',
+  apiLoginID: "92gDrV9HsJ",
+  clientKey: "5Sse7MujR83xe3d9cGL8x7sgNQLjaAa7qmmu6Z8ezLqdbDA7VM49buVn5DyyNFMz",
 };
-
-
 
 const BasicCardInfo = {
   cardNumber: 4111111111111111,
@@ -27,7 +24,7 @@ const App = () => {
     event.preventDefault();
     // Dispatch CC data to Authorize.net and receive payment nonce for use on your server
     const response = await dispatchData({ cardData });
-    console.log('Received response:', response);
+    console.log("Received response:", response);
   };
 
   return (
