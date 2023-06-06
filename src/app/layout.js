@@ -5,7 +5,7 @@ import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300","400","500"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata = {
@@ -17,11 +17,11 @@ export default function ({ children }) {
   return (
     <html lang="es">
       <body className={montserrat.className}>
-        {/* <Nav />
-        <div>{children}</div> */}
+        <Nav />
+        <div>{children}</div>
         <Footer />
 
-       <div id="modal-root" />
+        <div id="modal-root" />
       </body>
     </html>
   );

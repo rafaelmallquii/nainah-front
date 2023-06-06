@@ -26,22 +26,22 @@ const contact = [
 
 export default function Footer() {
   return (
-    <footer className="container p-4 space-y-4">
+    <footer className="container p-4 space-y-4 bg-[#F5F5F5]">
       <section className="space-y-4 text-[20px]">
         <h2>Newletter</h2>
 
         <p>
-          Sign up for our newsletter easily and be the first to know about our
+          Sign up for our newsletter <br/> easily and be the first to know <br/> about our
           latest news.
         </p>
 
         <input
           type="text"
           placeholder="Enter your email address"
-          className="outline-none border p-4 w-full"
+          className="outline-none border p-4 w-full bg-transparent border-[#C0C3C3]"
         />
 
-        <button className="bg-primary w-[226px] h-[64px] text-white">
+        <button className="bg-primary w-[226px] h-[64px] text-[24px] text-white">
           SUBSCRIBE
         </button>
       </section>
