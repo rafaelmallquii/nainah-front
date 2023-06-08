@@ -26,7 +26,7 @@ const contact = [
 
 export default function Footer() {
   return (
-    <footer className="container p-4 space-y-4 bg-[#F5F5F5]">
+    <footer className=" p-4 space-y-4 bg-[#F5F5F5]">
       <section className="space-y-4 text-[20px]">
         <h2>Newletter</h2>
 
