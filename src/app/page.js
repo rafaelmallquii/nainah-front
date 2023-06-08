@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/card/Card";
+import CardClassic from "@/components/card/CardClassic";
 
 export const metadata = {
   title: "Home",
@@ -10,8 +10,10 @@ export const metadata = {
 
 export default function () {
   return (
-    <main>
-      <Card description="Mostasero" img="/img/cart.png" price={5} priceOld={45} productName="Product 1"/>
+    <main className="gap-[10px] grid grid-cols-2 p-[12px]">
+      <CardClassic img="/img/cart.png" price={5.75} priceOld={7.50} title="Producto 1"/>
+      <CardClassic img="/img/cart.png" price={4.75} priceOld={7.50} title="Producto 2"/>
+
     </main>
   );
 }
