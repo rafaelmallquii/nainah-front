@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Cart from "../cart/Cart";
-import { useState } from "react";
+
+import CartModal from "@/app/cart/components/CartModal";
 
 const isActive = (href, path) => {
   if (href === path) {
@@ -16,31 +18,31 @@ const isActive = (href, path) => {
 const navMenu = [];
 
 export default function Nav() {
-  const [isOpenModal, setIsOpenModal] = useState(false); // [1
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const path = usePathname();
 
   const navMenuIcon = [
     {
       name: "Wishlist",
       href: "#",
-      icon: "/icons/hearth.svg",
+      icon: "/icons/hearth.svg"
     },
     {
       name: "Search",
       href: "#",
-      icon: "/icons/search.svg",
+      icon: "/icons/search.svg"
     },
     {
       name: "Account",
       href: "#",
-      icon: "/icons/user.svg",
+      icon: "/icons/user.svg"
     },
     {
       name: "Cart",
       href: "#",
       icon: "/icons/cart.svg",
-      action: () => setIsOpenModal(true),
-    },
+      action: () => setIsOpenModal(true)
+    }
   ];
 
   return (
@@ -96,7 +98,7 @@ export default function Nav() {
         </div>
       </nav>
 
-      <Cart isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      <CartModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </>
   );
 }

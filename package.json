@@ -1,26 +1,26 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "next dev -H 0.0.0.0 -p 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "autoprefixer": "latest",
-    "daisyui": "^3.0.2",
-    "framer-motion": "^10.12.16",
-    "next": "latest",
-    "postcss": "latest",
-    "react": "18.2.0",
-    "react-acceptjs": "^0.3.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.9.0",
-    "swiper": "^9.3.2",
-    "tailwindcss": "latest",
-    "usehooks-ts": "^2.9.1"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^8.0.2"
-  }
+	"private": true,
+	"scripts": {
+		"dev": "next dev -H 0.0.0.0 -p 3000",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"autoprefixer": "latest",
+		"framer-motion": "^10.12.16",
+		"next": "latest",
+		"postcss": "latest",
+		"react": "18.2.0",
+		"react-acceptjs": "^0.3.0",
+		"react-dom": "18.2.0",
+		"react-icons": "^4.9.0",
+		"react-overlays": "^5.2.1",
+		"swiper": "^10.0.4",
+		"tailwindcss": "latest",
+		"usehooks-ts": "^2.9.1"
+	},
+	"devDependencies": {
+		"@faker-js/faker": "^8.0.2"
+	}
 }

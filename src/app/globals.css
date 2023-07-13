@@ -3,16 +3,47 @@
 @tailwind utilities;
 
 @layer base {
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+  }
 
-    ::-webkit-scrollbar {
-        width: 0.3rem;
-      }
-    
-      ::-webkit-scrollbar-track {
-        background: hsl(var(--b3) / 0.25);
-      }
-    
-      ::-webkit-scrollbar-thumb {
-        background: hsl(var(--b3));
-      }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--b3) / 0.25);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--b3));
+  }
+}
+
+@layer components {
+  .grid-gallery {
+    /* grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr); */
+    grid-template-areas:
+      "img1 img2"
+      "img3 img3"
+      "img4 img5";
+  }
+
+  @media screen and (min-width: 768px) {
+    .grid-gallery {
+      /* grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr); */
+      grid-template-areas:
+        "img3 img3 img1 img2"
+        "img3 img3 img4 img5";
+    }
+  }
+}
+
+@layer utilities {
+  .centered-axis-payment {
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+
+  .swiper-wrapper {
+    padding: 50px !important;
+  }
 }
