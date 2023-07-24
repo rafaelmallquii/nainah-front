@@ -1,14 +1,13 @@
 import { Montserrat } from "next/font/google";
+import { AuthProvider } from "@/lib/context/AuthContext";
 
-import Nav from "@/components/nav/Nav";
-import Footer from "@/components/footer/Footer";
-
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 import "./globals.css";
-import dynamic from "next/dynamic";
-
-const CartContextProvider = dynamic(() => import("@/lib/context/CartContext"), {
-  ssr: false
-});
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,14 +21,10 @@ export const metadata = {
 
 export default function ({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" data-theme="light">
       <body className={montserrat.className}>
-        <CartContextProvider>
-          <Nav />
-          <div>{children}</div>
-          <Footer />
-          <div id="modal-root" />
-        </CartContextProvider>
+        <AuthProvider>{children}</AuthProvider>
+        <Toaster />
       </body>
     </html>
   );

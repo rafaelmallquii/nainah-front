@@ -11,13 +11,11 @@ export default function Carousel({ slides }) {
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={30}
         slidesPerView={
-          breakpoint === "mobile" ? 1 : breakpoint === "tablet" ? 2 : 4
+          breakpoint === "mobile" ? 1.3 : breakpoint === "tablet" ? 2.3 : 4.5
         }
-        // centeredSlides={true}
-        navigation={breakpoint === "mobile" ? false : true}
-        pagination={breakpoint === "mobile" ? false : { clickable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        // navigation={breakpoint === "mobile" ? false : true}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
       >
         {slides}
       </Swiper>

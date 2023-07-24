@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.placeholders.dev"]
+    domains: ["images.placeholders.dev", "nainah.yotohosting.tk"]
   }
 };
 

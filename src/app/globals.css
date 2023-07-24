@@ -18,21 +18,17 @@
 
 @layer components {
   .grid-gallery {
-    /* grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr); */
     grid-template-areas:
-      "img1 img2"
-      "img3 img3"
-      "img4 img5";
+      "img1 img1 img1 img1 img1 img1 img2 img2 img2 img2 img2 img2"
+      "img3 img3 img3 img3 img3 img3 img3 img3 img3 img3 img3 img3"
+      "img4 img4 img4 img4 img4 img4 img5 img5 img5 img5 img5 img5";
   }
 
   @media screen and (min-width: 768px) {
     .grid-gallery {
-      /* grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr); */
       grid-template-areas:
-        "img3 img3 img1 img2"
-        "img3 img3 img4 img5";
+        "img3 img3 img3 img3 img3 img3 img1 img1 img1 img2 img2 img2"
+        "img3 img3 img3 img3 img3 img3 img4 img4 img4 img5 img5 img5";
     }
   }
 }
@@ -43,7 +39,11 @@
     transform: translate(-50%, 0%);
   }
 
-  .swiper-wrapper {
-    padding: 50px !important;
+  .tab.tab-active:not(.tab-disabled):not([disabled]) {
+    border-color: #ffabbf;
+  }
+
+  .input-error {
+    @apply border-red-500;
   }
 }
