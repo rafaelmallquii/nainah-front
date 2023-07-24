@@ -48,8 +48,6 @@ export default function () {
     }
   }, []);
 
-  if (window === undefined) return <></>;
-
   return (
     <div className="space-y-3">
       <h2 className="text-center font-bold text-lg">Confirm your email</h2>

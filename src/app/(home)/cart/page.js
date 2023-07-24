@@ -4,8 +4,8 @@ import { useContext } from "react";
 import Link from "next/link";
 
 import { CartContext } from "@/lib/context/CartContext";
-import CartItem from "@/app/cart/components/CartItem";
-import RelatedProductsSection from "@/app/components/RelatedProductsSection";
+import CartItem from "./components/CartItem.jsx";
+import RelatedProductsSection from "../components/RelatedProductsSection.jsx";
 
 export default function ({ params: { name } }) {
   const { cartItems, total } = useContext(CartContext);
