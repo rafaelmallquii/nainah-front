@@ -2,6 +2,7 @@ import Carousel from "@/lib/ui/Carousel";
 import { SwiperSlide } from "swiper/react";
 import BasicProductCarrousel from "@/lib/ui/BasicProductCarrousel";
 import useBreakpoint from "@/lib/hooks/useBreakpoint";
+import Title from "@/lib/ui/Title";
 
 export default function HandbagsSection() {
   const breakpoint = useBreakpoint();
@@ -21,13 +22,10 @@ export default function HandbagsSection() {
 
   return (
     <section className="p-5">
-      <div className="text-center">
-        <h2 className="text-xl text-black font-bold">NEW HANDBAGS</h2>
-        <p className="text-xs text-[rgba(36,50,50,0.5)] mt-3 max-w-[35ch] mx-auto">
-          Discover a stunning collection of products that combine style and
-          functionality.
-        </p>
-      </div>
+      <Title
+        name="New Handbags"
+        description="Discover a stunning collection of products that combine style and functionality."
+      />
       <Carousel slides={slides} />
     </section>
   );

@@ -5,8 +5,6 @@ import { createPortal } from "react-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { IoMdClose } from "react-icons/io";
-
 const Portal = ({ children }) => {
   const ref = useRef(null);
   const [mounted, setMounted] = useState(false);
@@ -24,21 +22,21 @@ export default function ModalVertical({
   blur,
   right,
   bgDark = true,
-  selectable,
+  selectable
 }) {
   return (
     <Portal>
       <AnimatePresence>
         {isOpenModal && (
           <motion.div
-            className={` w-screen fixed left-0 bottom-0 top-[40px] z-[200] grid place-content-center place-items-center ${
+            className={`w-screen fixed left-0 bottom-0 top-[40px] lg:top-[100px] z-[200] grid place-content-center place-items-center ${
               selectable ? "pointer-events-none" : ""
             } ${blur ? "backdrop-blur-[6px]" : ""} ${
               bgDark ? "bg-black/40" : ""
             }  `}
           >
             <motion.div
-              className={`absolute top-0 h-full [filter:drop-shadow(0px_4px_4px_rgba(0,0,0,0.25))]  ${
+              className={`absolute top-0 w-[500px] [filter:drop-shadow(0px_4px_4px_rgba(0,0,0,0.25))]  ${
                 selectable ? "pointer-events-auto" : ""
               } ${right ? "right-0" : "left-0"} bg-white`}
               initial={right ? { x: "100%" } : { x: "-100%" }}

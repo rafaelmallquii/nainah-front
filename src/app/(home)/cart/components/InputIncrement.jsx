@@ -1,14 +1,12 @@
-import { useContext } from "react";
+import { useCart } from "@/lib/context/CartContext";
 
-import { CartContext } from "@/lib/context/CartContext";
-
-export default function InputIncrement({ currentValue, id }) {
-  const { increment, decrement } = useContext(CartContext);
+export default function InputIncrement({ currentValue, title }) {
+  const { increment, decrement } = useCart();
 
   return (
     <div className="absolute bottom-0 right-0 flex items-center justify-between border-[#909090] border-[1px]  w-[90px] h-[24px] text-[14px]">
       <button
-        onClick={() => decrement(id)}
+        onClick={() => decrement(title)}
         className="w-[40px] h-[40px] flex items-center justify-center text-[20px]  text-cgray-300 font-[500]"
       >
         -
@@ -17,7 +15,7 @@ export default function InputIncrement({ currentValue, id }) {
       <span className="text-[14px] ">{currentValue}</span>
 
       <button
-        onClick={() => increment(id)}
+        onClick={() => increment(title)}
         className="w-[40px] h-[40px] flex items-center justify-center text-[20px]  text-cgray-300 font-[400]"
       >
         +

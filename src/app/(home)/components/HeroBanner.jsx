@@ -20,7 +20,7 @@ export default function HeroBanner({ site_banner_small, site_banner_large }) {
             width={1520}
             height={980}
             quality={100}
-            className="hidden md:block w-full h-[91vh] object-fill"
+            className="hidden md:block w-full max-w-[90vw] object-cover"
             alt={"Banner"}
           />
         )}

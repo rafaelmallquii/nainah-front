@@ -5,7 +5,7 @@ import Spinner from "../ui/Spinner";
 
 const HomeContext = createContext({});
 
-export default function HomeProvider({ children }) {
+export const HomeProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [bestSellersProducts, setBestSellersProducts] = useState([]);
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -146,6 +146,6 @@ export default function HomeProvider({ children }) {
       {children}
     </HomeContext.Provider>
   );
-}
+};
 
 export const useHome = () => useContext(HomeContext);

@@ -1,10 +1,11 @@
 "use client";
+import { useContext } from "react";
 import { createContext, useEffect, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
-const CartContextProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useLocalStorage("cart", []);
   const [total, setTotal] = useState(0);
 
@@ -23,7 +24,7 @@ const CartContextProvider = ({ children }) => {
 
   useEffect(() => {
     const total = cartItems.reduce((acc, item) => {
-      return acc + item.price * item.quantity;
+      return acc + item.totalPrice;
     }, 0);
 
     setTotal(total);
@@ -31,28 +32,67 @@ const CartContextProvider = ({ children }) => {
 
   const cartSize = cartItems.length;
 
-  const addItemToCart = (item) => {
-    setCartItems([...cartItems, item]);
+  const addItemToCart = (variant, quantity, productTitle) => {
+    const { title, price, image, color, size } = variant;
+
+    // Check if an item with the same title already exists in the cart
+    const existingItem = cartItems.find((cartItem) => cartItem.title === title);
+
+    if (existingItem) {
+      // If an item with the same title already exists, update its quantity
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem.title === title
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity + quantity,
+                totalPrice: cartItem.price * (cartItem.quantity + quantity)
+              }
+            : cartItem
+        )
+      );
+    } else {
+      // If the item doesn't exist in the cart, add it to the cartItems array
+      setCartItems([
+        ...cartItems,
+        {
+          title: productTitle,
+          variant: {
+            title,
+            price,
+            image,
+            color,
+            size
+          },
+          quantity,
+          totalPrice: price * quantity
+        }
+      ]);
+    }
   };
 
-  const removeItemFromCart = (item) => {
-    setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
+  const removeItemFromCart = (title) => {
+    setCartItems(cartItems.filter((cartItem) => cartItem.title !== title));
   };
 
   const clearCart = () => {
     setCartItems([]);
   };
 
-  const increment = (id) => {
-    const productIndex = cartItems.findIndex((item) => item.id === id);
+  const increment = (title) => {
+    const productIndex = cartItems.findIndex(
+      (item) => item.variant.title === title
+    );
     if (productIndex === -1) return;
     const newCart = [...cartItems];
     newCart[productIndex].quantity += 1;
     setCartItems(newCart);
   };
 
-  const decrement = (id) => {
-    const productIndex = cartItems.findIndex((item) => item.id === id);
+  const decrement = (title) => {
+    const productIndex = cartItems.findIndex(
+      (item) => item.variant.title === title
+    );
     if (productIndex === -1) return;
     const newCart = [...cartItems];
     newCart[productIndex].quantity -= 1;
@@ -81,4 +121,4 @@ const CartContextProvider = ({ children }) => {
   );
 };
 
-export default CartContextProvider;
+export const useCart = () => useContext(CartContext);

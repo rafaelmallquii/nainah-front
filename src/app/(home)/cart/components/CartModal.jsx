@@ -7,24 +7,24 @@ import ModalVertical from "@/lib/ui/Modal";
 import { formatPriceToUSDString } from "@/lib/helpers/helpers";
 
 import { useOnClickOutside } from "usehooks-ts";
-import { CartContext } from "@/lib/context/CartContext";
+import { useCart } from "@/lib/context/CartContext";
 import CartItem from "./CartItem";
 
 export default function CartModal({ isOpenModal, setIsOpenModal }) {
-  const { cartItems, total, cartSize } = useContext(CartContext);
+  const { cartItems, total, cartSize } = useCart();
   const ref = useRef();
 
-  useOnClickOutside(ref, () => setIsOpenModal(false));
+  useOnClickOutside(ref, () => setIsOpenModal(false), "mouseup");
 
   return (
     <>
       <ModalVertical
-        right
+        right={true}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         bgDark={false}
       >
-        <div ref={ref} className="w-screen px-[12px] relative h-full ">
+        <div ref={ref} className="w-full px-3 relative h-full">
           <div className="flex items-center justify-between p-[15px]">
             <span className="text-[24px] font-semibold text-cpink-200">
               Cart({cartSize})
@@ -37,7 +37,7 @@ export default function CartModal({ isOpenModal, setIsOpenModal }) {
 
           <div className="bg-[#989898] h-[1px]" />
 
-          <div className="h-full pb-[280px]">
+          <div className="h-full max-h-[400px] overflow-y-auto">
             <ul className="py-4 space-y-4 h-full overflow-y-auto">
               {cartItems
                 .slice(0)
@@ -48,7 +48,7 @@ export default function CartModal({ isOpenModal, setIsOpenModal }) {
             </ul>
           </div>
 
-          <section className="absolute bottom-0 w-full left-0 px-[12px]  bg-white border-t">
+          <section className="w-full left-0 px-3  bg-white border-t">
             <div className="pb-10  flex flex-col items-center">
               <span className="text-[24px] my-4">
                 Total: US {formatPriceToUSDString(total)}

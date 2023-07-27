@@ -1,14 +1,13 @@
-import { CartContext } from "@/lib/context/CartContext";
+import { useCart } from "@/lib/context/CartContext";
 import InputIncrement from "./InputIncrement";
-import { useContext } from "react";
 
 export default function CartItem({ product }) {
-	const { removeItemFromCart } = useContext(CartContext);
+  const { removeItemFromCart } = useCart();
 
   return (
-    <li className="flex items-center justify-between relative">
+    <li className="mr-3 flex items-center justify-between relative">
       <button
-        onClick={() => removeItemFromCart(product.id)}
+        onClick={() => removeItemFromCart(product.variant.title)}
         className="top-0 right-4 absolute"
       >
         <img src="/icons/delete.svg" alt="Delete Icon" />
@@ -16,7 +15,7 @@ export default function CartItem({ product }) {
       <div className="flex gap-[15px]">
         <div>
           <img
-            src={product.image}
+            src={product.variant.image}
             className="h-[100px] w-[100px] object-cover object-center"
             alt="#"
           />
@@ -24,19 +23,22 @@ export default function CartItem({ product }) {
 
         <section>
           <div className="flex flex-col">
-            <span className="font-semibold truncate max-w-[15ch]">
-              {product.name}
+            <span className="font-semibold text-base truncate max-w-[15ch]">
+              {product.variant.title}
             </span>
-            <span className="text-[14px]">Totem Dragon</span>
+            <span className="text-[12px]">{product.title}</span>
             <span className="font-semibold text-[14px]">
-              US$ {product.price}
+              US$ {product.totalPrice}
             </span>
-            <span className="text-[14px]">Color: Black</span>
-            <span className="text-[14px]">Size: 11</span>
+            <span className="text-[14px]">Color: {product.variant.color}</span>
+            <span className="text-[14px]">Size: {product.variant.size}</span>
           </div>
         </section>
 
-        <InputIncrement currentValue={product.quantity} id={product.id} />
+        <InputIncrement
+          currentValue={product.quantity}
+          title={product.variant.title}
+        />
       </div>
     </li>
   );

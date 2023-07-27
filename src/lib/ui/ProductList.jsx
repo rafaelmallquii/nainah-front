@@ -17,11 +17,11 @@ export default function ProductList({
           width={300}
           height={300}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover aspect-[9/13]"
         />
       </div>
       <div className="mt-3">
-        <p className="text-black text-base font-bold">{title}</p>
+        <p className="text-black text-base lg:text-lg font-bold">{title}</p>
         <div className="flex flex-wrap justify-between">
           <p className="font-bold text-[#01A7A3] text-sm">{newPrice}</p>
           <p className="line-through text-cgray-200 text-sm">{oldPrice}</p>

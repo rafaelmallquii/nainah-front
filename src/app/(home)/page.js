@@ -24,8 +24,8 @@ export default function () {
       <main>
         <Container>
           <CategoriesSection />
-          <BestSellerSection />
         </Container>
+        <BestSellerSection />
         {sortedCatalogs.map((catalog, index) => (
           <NewCollectionSection
             key={index}
