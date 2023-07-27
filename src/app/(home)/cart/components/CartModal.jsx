@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 
 import Link from "next/link";
 
@@ -48,7 +48,7 @@ export default function CartModal({ isOpenModal, setIsOpenModal }) {
             </ul>
           </div>
 
-          <section className="w-full left-0 px-3  bg-white border-t">
+          <section className="w-full left-0 px-3 bg-white border-t">
             <div className="pb-10  flex flex-col items-center">
               <span className="text-[24px] my-4">
                 Total: US {formatPriceToUSDString(total)}

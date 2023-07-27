@@ -6,6 +6,7 @@ import Spinner from "../ui/Spinner";
 const HomeContext = createContext({});
 
 export const HomeProvider = ({ children }) => {
+  const [handbags, setHandbags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [bestSellersProducts, setBestSellersProducts] = useState([]);
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -18,6 +19,7 @@ export const HomeProvider = ({ children }) => {
 
   useEffect(() => {
     Promise.all([
+      fetchHandbags(),
       fetchTrendingProducts(),
       fetchCategoriesFromApi(),
       fetchBestSellerProducts(),
@@ -29,6 +31,16 @@ export const HomeProvider = ({ children }) => {
       .then(() => setLoading(false))
       .catch((error) => console.error(error));
   }, []);
+
+  const fetchHandbags = async () => {
+    try {
+      const { data: handbags } = await api.get("api/home/productHandbags");
+
+      setHandbags(handbags);
+    } catch (error) {
+      console.error(error?.response?.data);
+    }
+  };
 
   const fetchCategoriesFromApi = async () => {
     try {
@@ -134,6 +146,7 @@ export const HomeProvider = ({ children }) => {
     <HomeContext.Provider
       value={{
         subscribe,
+        handbags,
         trendingProducts,
         categories,
         catalogs,

@@ -11,17 +11,15 @@ export default function () {
   return (
     <>
       {!isAuthenticated ? (
-        <div className="p-5">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold">You are not logged in</h1>
-            <p className="text-lg">Please login to view your profile</p>
-            <Link
-              href="/login"
-              className="block mx-auto mt-2 bg-primary px-3 py-2 w-fit text-[24px] text-white"
-            >
-              LOGIN
-            </Link>
-          </div>
+        <div className="h-full p-5 text-center">
+          <h1 className="text-2xl font-bold">You are not logged in</h1>
+          <p className="text-lg">Please login to view your profile</p>
+          <Link
+            href="/login"
+            className="block mx-auto mt-2 bg-primary px-3 py-2 w-fit text-[24px] text-white"
+          >
+            LOGIN
+          </Link>
         </div>
       ) : (
         <Container>

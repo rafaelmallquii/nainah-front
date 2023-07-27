@@ -1,5 +1,4 @@
 import ProductList from "@/lib/ui/ProductList";
-import Container from "@/lib/ui/Container";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Title from "@/lib/ui/Title";

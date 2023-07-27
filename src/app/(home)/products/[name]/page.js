@@ -133,7 +133,7 @@ export default function ({ params: { name } }) {
           <h3 className="font-bold text-lg text-black">Description</h3>
           <div dangerouslySetInnerHTML={{ __html: product?.description }} />
         </div>
-        <RelatedProductsSection />
+        <RelatedProductsSection title={encodedTitle} />
       </div>
 
       <SizeGuideModal

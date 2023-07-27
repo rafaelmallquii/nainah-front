@@ -29,32 +29,32 @@ export default function Nav() {
     },
     {
       name: "About us",
-      href: "/about"
+      href: "/"
     },
     {
       name: "Catalogs",
-      href: "/catalogs"
+      href: "/"
     },
     {
       name: "Coupons",
-      href: "/coupons"
+      href: "/"
     },
     {
       name: "Shop",
-      href: "/shop"
+      href: "/"
     }
   ];
 
   const navMenuIcon = [
     {
       name: "Wishlist",
-      href: "#",
+      href: "/",
       custom: false,
       icon: "/icons/hearth.svg"
     },
     {
       name: "Search",
-      href: "#",
+      href: "/",
       custom: false,
       icon: "/icons/search.svg"
     },
@@ -66,7 +66,7 @@ export default function Nav() {
     },
     {
       name: "Cart",
-      href: "#",
+      href: "/",
       icon: "/icons/cart.svg",
       custom: true,
       action: () => setIsOpenModal(true)

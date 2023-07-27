@@ -1,6 +1,9 @@
 import { useCart } from "@/lib/context/CartContext";
 
-export default function InputIncrement({ currentValue, title }) {
+export default function InputIncrement({ product }) {
+  const title = product.variant.title;
+  const quantity = product.quantity;
+
   const { increment, decrement } = useCart();
 
   return (
@@ -12,7 +15,7 @@ export default function InputIncrement({ currentValue, title }) {
         -
       </button>
 
-      <span className="text-[14px] ">{currentValue}</span>
+      <span className="text-[14px] ">{quantity}</span>
 
       <button
         onClick={() => increment(title)}

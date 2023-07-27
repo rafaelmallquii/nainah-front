@@ -37,9 +37,7 @@ export default function () {
             show_quantity={catalog.show_quantity}
           />
         ))}
-        <Container>
-          <HandbagsSection />
-        </Container>
+        <HandbagsSection />
       </main>
     </>
   );

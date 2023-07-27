@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
+import useBreakpoint from "../hooks/useBreakpoint";
 
 const Portal = ({ children }) => {
   const ref = useRef(null);
@@ -24,6 +25,8 @@ export default function ModalVertical({
   bgDark = true,
   selectable
 }) {
+  const breakpoint = useBreakpoint();
+
   return (
     <Portal>
       <AnimatePresence>
@@ -33,16 +36,20 @@ export default function ModalVertical({
               selectable ? "pointer-events-none" : ""
             } ${blur ? "backdrop-blur-[6px]" : ""} ${
               bgDark ? "bg-black/40" : ""
-            }  `}
+            } `}
           >
             <motion.div
-              className={`absolute top-0 w-[500px] [filter:drop-shadow(0px_4px_4px_rgba(0,0,0,0.25))]  ${
+              className={`absolute top-0 w-full lg:w-[550px] filter:drop-shadow(0px_4px_4px_rgba(0,0,0,0.25)) ${
                 selectable ? "pointer-events-auto" : ""
               } ${right ? "right-0" : "left-0"} bg-white`}
-              initial={right ? { x: "100%" } : { x: "-100%" }}
-              animate={right ? { x: 0 } : { x: 0 }}
+              initial={breakpoint === "mobile" ? { y: "-100%" } : { x: "100%" }}
+              animate={{ x: 0, y: 0 }}
               transition={{ duration: 0.59, ease: "easeOut" }}
-              exit={right ? { x: "100%" } : { x: "-100%" }}
+              exit={
+                breakpoint === "mobile"
+                  ? { y: "-100%" }
+                  : { x: right ? "100%" : "100%" }
+              }
             >
               {children}
             </motion.div>

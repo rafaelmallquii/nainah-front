@@ -3,17 +3,17 @@ import { SwiperSlide } from "swiper/react";
 import BasicProductCarrousel from "@/lib/ui/BasicProductCarrousel";
 import useBreakpoint from "@/lib/hooks/useBreakpoint";
 import Title from "@/lib/ui/Title";
+import { useHome } from "@/lib/context/HomeContext";
 
 export default function HandbagsSection() {
+  const { handbags } = useHome();
   const breakpoint = useBreakpoint();
 
-  const items = Array.from({ length: 7 });
-
-  const slides = items.map((_, i) => (
+  const slides = handbags.map((_, i) => (
     <SwiperSlide
       key={i}
       className={`${
-        breakpoint === "desktop" && items.length < 6 ? "flex-1" : "flex-none"
+        breakpoint === "desktop" && handbags.length < 6 ? "flex-1" : "flex-none"
       }`}
     >
       <BasicProductCarrousel />
@@ -21,12 +21,16 @@ export default function HandbagsSection() {
   ));
 
   return (
-    <section className="p-5">
-      <Title
-        name="New Handbags"
-        description="Discover a stunning collection of products that combine style and functionality."
-      />
-      <Carousel slides={slides} />
-    </section>
+    <>
+      {handbags.length > 0 && (
+        <section className="p-5">
+          <Title
+            name="New Handbags"
+            description="Discover a stunning collection of products that combine style and functionality."
+          />
+          <Carousel slides={slides} />
+        </section>
+      )}
+    </>
   );
 }

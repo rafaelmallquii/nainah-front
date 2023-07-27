@@ -1,7 +1,10 @@
 import { useCart } from "@/lib/context/CartContext";
 import InputIncrement from "./InputIncrement";
+import { useHome } from "@/lib/context/HomeContext";
+import Image from "next/image";
 
 export default function CartItem({ product }) {
+  const { colors, sizes } = useHome();
   const { removeItemFromCart } = useCart();
 
   return (
@@ -14,31 +17,38 @@ export default function CartItem({ product }) {
       </button>
       <div className="flex gap-[15px]">
         <div>
-          <img
+          <Image
             src={product.variant.image}
-            className="h-[100px] w-[100px] object-cover object-center"
+            width={120}
+            height={120}
+            className="max-w-full object-cover object-center"
             alt="#"
           />
         </div>
 
         <section>
           <div className="flex flex-col">
-            <span className="font-semibold text-base truncate max-w-[15ch]">
+            <span className="font-semibold text-base truncate lg:max-w-[25ch]">
               {product.variant.title}
             </span>
-            <span className="text-[12px]">{product.title}</span>
-            <span className="font-semibold text-[14px]">
+            <span className="text-sm">{product.title}</span>
+            <span className="font-semibold text-base">
               US$ {product.totalPrice}
             </span>
-            <span className="text-[14px]">Color: {product.variant.color}</span>
-            <span className="text-[14px]">Size: {product.variant.size}</span>
+            <div className="inline-flex items-center gap-2">
+              <span className="text-sm">Color:</span>
+              <div
+                className="w-3 h-3 rounded-full"
+                style={{
+                  backgroundColor: colors[product.variant.color] ?? "gray"
+                }}
+              ></div>
+            </div>
+            <span className="text-sm">Size: {sizes[product.variant.size]}</span>
           </div>
         </section>
 
-        <InputIncrement
-          currentValue={product.quantity}
-          title={product.variant.title}
-        />
+        <InputIncrement product={product} />
       </div>
     </li>
   );

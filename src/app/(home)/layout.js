@@ -9,7 +9,7 @@ export default function ({ children }) {
     <CartProvider>
       <HomeProvider>
         <Nav />
-        <div>{children}</div>
+        {children}
         <Footer />
         <div id="modal-root" />
       </HomeProvider>

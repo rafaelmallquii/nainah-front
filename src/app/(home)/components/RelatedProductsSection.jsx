@@ -1,18 +1,23 @@
+"use client";
+import api from "@/lib/helpers/api/local";
 import useBreakpoint from "@/lib/hooks/useBreakpoint";
 import Carousel from "@/lib/ui/Carousel";
 import ProductCarrousel from "@/lib/ui/ProductCarrousel";
+import Title from "@/lib/ui/Title";
+import { useState, useEffect } from "react";
 import { SwiperSlide } from "swiper/react";
 
-export default function RelatedProductsSection() {
+export default function RelatedProductsSection({ title }) {
   const breakpoint = useBreakpoint();
+  const [items, setItems] = useState([]);
 
-  const items = Array.from({ length: 3 }, () => ({
-    title: "Product 1",
-    image: "/img/cart_2.png",
-    oldPrice: "$ 60.00",
-    newPrice: "$ 50.00",
-    category: "Category 1"
-  }));
+  // const items = Array.from({ length: 3 }, () => ({
+  //   title: "Product 1",
+  //   image: "/img/cart_2.png",
+  //   oldPrice: "$ 60.00",
+  //   newPrice: "$ 50.00",
+  //   category: "Category 1"
+  // }));
 
   const slides = items.map((item, i) => (
     <SwiperSlide
@@ -32,16 +37,30 @@ export default function RelatedProductsSection() {
     </SwiperSlide>
   ));
 
+  useEffect(() => {
+    getRelatedProducts();
+  }, []);
+
+  const getRelatedProducts = async () => {
+    try {
+      const { data } = await api.get(`api/home/relatedProducts?title=${title}`);
+      setItems(data);
+    } catch (error) {
+      console.error(error?.response?.data);
+    }
+  };
+
   return (
-    <section className="p-5">
-      <div className="text-center">
-        <h2 className="text-xl text-black font-bold">RELATED PRODUCTS</h2>
-        <p className="text-xs text-[rgba(36,50,50,0.5)] mt-3 max-w-[35ch] mx-auto">
-          Discover a stunning collection of products that combine style and
-          functionality.
-        </p>
-      </div>
-      <Carousel slides={slides} />
-    </section>
+    <>
+      {items.length > 0 && (
+        <section className="p-5">
+          <Title
+            name="RELATED PRODUCTS"
+            description="Discover a stunning collection of products that combine style and functionality."
+          />
+          <Carousel slides={slides} />
+        </section>
+      )}
+    </>
   );
 }

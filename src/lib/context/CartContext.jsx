@@ -10,16 +10,9 @@ export const CartProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    setCartItems((prev) => [
-      ...prev
-      // {
-      //   id: faker.string.uuid(),
-      //   name: faker.commerce.productName(),
-      //   price: faker.commerce.price({ min: 10, max: 40 }),
-      //   image: faker.image.urlPicsumPhotos(),
-      //   quantity: 1
-      // }
-    ]);
+    // 1. Get all the variants by the title of the cartItem
+    // 2. Update the cartItem with the new variant stock
+    // 3. Update the cartItems with the new cartItem
   }, []);
 
   useEffect(() => {
@@ -33,20 +26,28 @@ export const CartProvider = ({ children }) => {
   const cartSize = cartItems.length;
 
   const addItemToCart = (variant, quantity, productTitle) => {
-    const { title, price, image, color, size } = variant;
+    const { title, price, stock } = variant;
 
     // Check if an item with the same title already exists in the cart
-    const existingItem = cartItems.find((cartItem) => cartItem.title === title);
+    const existingItem = cartItems.find(
+      (cartItem) => cartItem.variant.title === title
+    );
+    const newQuantity = existingItem
+      ? existingItem.quantity + quantity
+      : quantity;
+
+    if (isOutOfStock(newQuantity, stock)) return;
 
     if (existingItem) {
       // If an item with the same title already exists, update its quantity
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === title
+          cartItem.variant.title === title
             ? {
                 ...cartItem,
                 quantity: cartItem.quantity + quantity,
-                totalPrice: cartItem.price * (cartItem.quantity + quantity)
+                totalPrice:
+                  cartItem.variant.price * (cartItem.quantity + quantity)
               }
             : cartItem
         )
@@ -57,13 +58,7 @@ export const CartProvider = ({ children }) => {
         ...cartItems,
         {
           title: productTitle,
-          variant: {
-            title,
-            price,
-            image,
-            color,
-            size
-          },
+          variant,
           quantity,
           totalPrice: price * quantity
         }
@@ -71,8 +66,18 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const isOutOfStock = (quantity, stock) => {
+    if (quantity > stock) {
+      alert(`Sorry, we only have ${stock} items in stock`);
+      return true;
+    }
+    return false;
+  };
+
   const removeItemFromCart = (title) => {
-    setCartItems(cartItems.filter((cartItem) => cartItem.title !== title));
+    setCartItems(
+      cartItems.filter((cartItem) => cartItem.variant.title !== title)
+    );
   };
 
   const clearCart = () => {
@@ -80,12 +85,20 @@ export const CartProvider = ({ children }) => {
   };
 
   const increment = (title) => {
-    const productIndex = cartItems.findIndex(
-      (item) => item.variant.title === title
-    );
+    const productIndex = cartItems.findIndex((item) => {
+      return item.variant.title === title;
+    });
+
     if (productIndex === -1) return;
+
+    const newQuantity = cartItems[productIndex].quantity + 1;
+    const stock = cartItems[productIndex].variant.stock;
+    if (isOutOfStock(newQuantity, stock)) return;
+
     const newCart = [...cartItems];
     newCart[productIndex].quantity += 1;
+    newCart[productIndex].totalPrice =
+      newCart[productIndex].variant.price * newCart[productIndex].quantity;
     setCartItems(newCart);
   };
 
@@ -96,6 +109,8 @@ export const CartProvider = ({ children }) => {
     if (productIndex === -1) return;
     const newCart = [...cartItems];
     newCart[productIndex].quantity -= 1;
+    newCart[productIndex].totalPrice =
+      newCart[productIndex].variant.price * newCart[productIndex].quantity;
     setCartItems(newCart);
     if (newCart[productIndex].quantity === 0) {
       newCart.splice(productIndex, 1);
