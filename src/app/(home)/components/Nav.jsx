@@ -66,7 +66,6 @@ export default function Nav() {
     },
     {
       name: "Cart",
-      href: "/",
       icon: "/icons/cart.svg",
       custom: true,
       action: () => setIsOpenModal(true)
