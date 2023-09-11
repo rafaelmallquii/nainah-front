@@ -74,7 +74,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="h-[40px] lg:h-[100px] bg-white sticky top-0 z-[999] left-0 w-full px-3 lg:px-5 [box-shadow:1px_3px_4px_rgba(0,0,0,0.25)] ">
+      <nav className="h-[61px] lg:h-[100px] bg-white sticky top-0 z-[999] left-0 w-full px-3 lg:px-5 [box-shadow:1px_3px_4px_rgba(0,0,0,0.25)] ">
         <div className="flex flex-wrap items-center justify-between h-full">
           <div className="flex gap-4 items-center">
             <Link href="/" className="flex items-center">
